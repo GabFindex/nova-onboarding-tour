@@ -23,8 +23,6 @@ onMounted(async () => {
             );
 
             const flows = await response.data.flows;
-            
-            // console.log(fetchedConfig);
 
             Object.assign(config, flows);
 
