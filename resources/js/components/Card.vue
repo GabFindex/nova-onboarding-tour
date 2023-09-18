@@ -19,7 +19,7 @@ onMounted(async () => {
     async function fetchConfig() {
         try {
             const response = await Nova.request().get(
-                "/nova-vendor/onboarding/steps".replace("n", "x")
+                "/nova-vendor/onboarding/steps".replace("\\\/", "/")
             );
 
             const flows = await response.data.flows;
