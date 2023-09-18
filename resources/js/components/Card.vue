@@ -17,6 +17,7 @@ onMounted(async () => {
     let matchingFlow = null;
 
     async function fetchConfig() {
+        console.log("This is a test");
         try {
             const response = await Nova.request().get(
                 "/nova-vendor/onboarding/steps".replace("\\\/", "/")
