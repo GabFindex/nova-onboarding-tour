@@ -35,7 +35,7 @@ onMounted(async () => {
             }
 
             if (matchingFlow) {
-                steps.value = (matchingFlow.steps || []).map((step) => ({
+                steps.value = Object.values(matchingFlow.steps || {}).map((step) => ({
                     attachTo: { element: step.selector },
                     content: {
                         title: step.title,
