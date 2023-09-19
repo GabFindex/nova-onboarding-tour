@@ -39,7 +39,7 @@ onMounted(async () => {
             }
 
             if (matchingFlow) {
-                steps.value = Object.values(matchingFlow.steps || {}).map((step) => ({
+                steps.value = Object.values(matchingFlow.steps).map((step) => ({
                     attachTo: { element: step.selector },
                     content: {
                         title: step.title,
@@ -59,7 +59,7 @@ onMounted(async () => {
 
     setTimeout(() => {
         start();
-        console.log(steps)
+        // console.log(steps)
         console.log("hello!")
     }, 1000);
 });
