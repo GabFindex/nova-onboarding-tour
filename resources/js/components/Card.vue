@@ -39,13 +39,14 @@ onMounted(async () => {
             }
 
             if (matchingFlow) {
-                steps.value = Object.values(matchingFlow.steps || {}).map((step) => ({
-                    attachTo: { element: step.selector },
-                    content: {
-                        title: step.title,
-                        description: step.description,
-                    },
-                }));
+                console.log(matchingFlow);
+                // steps.value = Object.values(matchingFlow.steps || {}).map((step) => ({
+                //     attachTo: { element: step.selector },
+                //     content: {
+                //         title: step.title,
+                //         description: step.description,
+                //     },
+                // }));
             }
 
             console.log("matchingflow", matchingFlow);
