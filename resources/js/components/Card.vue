@@ -60,6 +60,7 @@ onMounted(async () => {
     setTimeout(() => {
         start();
         console.log(steps)
+        console.log("hello!")
     }, 1000);
 });
 </script>
