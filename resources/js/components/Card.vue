@@ -13,7 +13,7 @@ const wrapper = ref(null);
 const { start, goToStep, finish } = useVOnboarding(wrapper);
 
 onMounted(async () => {
-    console.log("Hello!!");
+    
     const currentUrl = window.location.pathname;
     let matchingFlow = null;
 
@@ -39,7 +39,7 @@ onMounted(async () => {
             }
 
             if (matchingFlow) {
-                steps.value = Object.values(matchingFlow.steps).map((step) => ({
+                steps.value = Object.values(matchingFlow.steps || {}).map((step) => ({
                     attachTo: { element: step.selector },
                     content: {
                         title: step.title,
@@ -59,8 +59,8 @@ onMounted(async () => {
 
     setTimeout(() => {
         start();
-        // console.log(steps)
-        console.log("hello!")
+        console.log(steps)
+        console.log("test!")
     }, 1000);
 });
 </script>
