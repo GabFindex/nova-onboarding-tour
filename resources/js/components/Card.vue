@@ -10,11 +10,29 @@ import "v-onboarding/dist/style.css";
 
 const steps = ref();
 const wrapper = ref(null);
-const { start, goToStep, finish } = useVOnboarding(wrapper);
+const { start } = useVOnboarding(wrapper);
+
+function getSeenUris() {
+  const seenUris = localStorage.getItem('seenOnboardingUris');
+  return seenUris ? JSON.parse(seenUris) : [];
+}
+
+function markUriAsSeen(uri) {
+  const seenUris = getSeenUris();
+  if (!seenUris.includes(uri)) {
+    seenUris.push(uri);
+    localStorage.setItem('seenOnboardingUris', JSON.stringify(seenUris));
+  }
+}
 
 onMounted(async () => {
-    
     const currentUrl = window.location.pathname;
+    const seenUris = getSeenUris();
+    
+    if (seenUris.includes(currentUrl)) {
+      return;
+    }
+
     let matchingFlow = null;
 
     async function fetchConfig() {
@@ -28,8 +46,6 @@ onMounted(async () => {
             console.log(response);
 
             const flows = await response.data.flows;
-
-            Object.assign(config, flows);
 
             for (const flowKey in flows) {
                 if (flows[flowKey].uri === currentUrl) {
@@ -59,8 +75,15 @@ onMounted(async () => {
 
     setTimeout(() => {
         start();
-        console.log(steps)
-        console.log("test!")
+        console.log(steps);
+        console.log("test!");
+
+        markUriAsSeen(currentUrl);
     }, 1000);
 });
 </script>
+
+
+
+
+
