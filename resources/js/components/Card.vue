@@ -13,6 +13,7 @@ const wrapper = ref(null);
 const { start, goToStep, finish } = useVOnboarding(wrapper);
 
 onMounted(async () => {
+    console.log("Hello!!");
     const currentUrl = window.location.pathname;
     let matchingFlow = null;
 
@@ -22,6 +23,9 @@ onMounted(async () => {
             const response = await Nova.request().get(
                 "/nova-vendor/onboarding/steps".replace("\\\/", "/")
             );
+
+            console.log("response");
+            console.log(response);
 
             const flows = await response.data.flows;
 
